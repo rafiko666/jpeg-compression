@@ -23,6 +23,7 @@
     "express-zip": "^2.0.1",
     "file-base64": "^1.0.0",
     "imagemin": "^7.0.1",
+    "imagemin-mozjpeg": "^8.0.0",
     "multer": "^1.4.2"
   }
 }
