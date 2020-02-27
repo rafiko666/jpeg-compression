@@ -9,7 +9,7 @@ const app = express();
 const path = require('path');
 const fs = require('fs');
 
-let img="";
+var compressing = true;
 // Handlebars Middleware
 app.engine('handlebars', exphbs({
   defaultLayout: 'main'
@@ -23,14 +23,17 @@ const storage = multer.diskStorage({
 });
 var upload =  multer({
   storage: storage,
-  limits:{fileSize: 1000000},
+  limits:{fileSize: 20000000},
 })
-
+app.use((req,res,next)=>  {
+  res.locals.process = false
+  next();
+})
 // main Route
 app.get('/', (req, res) => {
-  const title = 'Welcome';
+  const img = this.img;
   res.render('index', {
-    img: img
+    msg : ''
   });
 });
 
@@ -39,12 +42,13 @@ app.get('/upload', (req,res)=> {
 });
 
 app.post('/upload',upload.array('myImage'),(req,res)=> {
+  res.locals.process = true;
   (async () => {
     const files = await imagemin(['public/uploads/*.jpg'], {
         destination: 'build/images',
         plugins: [
           imageminMozjpeg({
-            quality : 75
+            quality : req.body['quality'] || 85
           })
         ]
     });
