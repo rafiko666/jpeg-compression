@@ -1,4 +1,4 @@
-# jpeg-compression
+
 
 # Compress your images
 - in order to use this project, you have to clone the repo and work locally
