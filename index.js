@@ -1,4 +1,5 @@
 const express = require('express');
+var bodyParser = require('body-parser');
 var zip = require('express-zip');
 const exphbs  = require('express-handlebars');
 const multer = require('multer');
@@ -9,12 +10,10 @@ const app = express();
 const path = require('path');
 const fs = require('fs');
 
-var compressing = true;
 // Handlebars Middleware
 app.engine('handlebars', exphbs({
   defaultLayout: 'main'
 }));
-app.use(express.static(__dirname + '/public'));
 app.set('view engine', 'handlebars');
 const storage = multer.diskStorage({
   destination: './public/uploads/',
@@ -26,10 +25,8 @@ var upload =  multer({
   storage: storage,
   limits:{fileSize: 20000000},
 })
-app.use((req,res,next)=>  {
-  res.locals.process = false
-  next();
-})
+app.use(express.static(__dirname + '/public'));
+
 // main Route
 app.get('/', (req, res) => {
   const img = this.img;
@@ -43,7 +40,6 @@ app.get('/upload', (req,res)=> {
 });
 
 app.post('/upload',upload.array('myImage'),(req,res)=> {
-  res.locals.process = true;
   (async () => {
     const files = await imagemin(['public/uploads/*.jpg'], {
         destination: 'build/images',
