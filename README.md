@@ -3,7 +3,7 @@
 </p>
 
 # Compress your images
-- in order to use this project, you have to clone the repo and work locally
+- These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See https://jpeg-compression.herokuapp.com/ for a live demo.
 
 ```shell
 git clone https://github.com/rafiko666/jpeg-compression.git
