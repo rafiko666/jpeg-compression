@@ -14,6 +14,7 @@ var compressing = true;
 app.engine('handlebars', exphbs({
   defaultLayout: 'main'
 }));
+app.use(express.static(__dirname + '/public'));
 app.set('view engine', 'handlebars');
 const storage = multer.diskStorage({
   destination: './public/uploads/',
