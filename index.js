@@ -40,6 +40,8 @@ app.get('/upload', (req,res)=> {
 });
 
 app.post('/upload',upload.array('myImage'),(req,res)=> {
+  if(req.body['quality'] < 0) req.body['quality'] = 0;
+  if(req.body['quality'] > 100) req.body['quality'] = 100; 
   (async () => {
     const files = await imagemin(['public/uploads/*.jpg'], {
         destination: 'build/images',
