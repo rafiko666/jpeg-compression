@@ -13,7 +13,10 @@
     "size",
     "minimize",
     "same",
-    "quality"
+    "quality",
+    "jpeg",
+    "mozjpeg",
+    "jpeg compression "
   ],
   "author": "Rafik Tchek",
   "license": "ISC",
