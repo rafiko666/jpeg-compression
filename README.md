@@ -9,7 +9,7 @@
 git clone https://github.com/rafiko666/jpeg-compression.git
 cd jpeg-compression
 npm install
-node index.js
+npm start
 ```
 - Open your browser and navigate to localhost:5000
 
